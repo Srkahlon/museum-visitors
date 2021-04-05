@@ -1,0 +1,35 @@
+swagger: "2.0"
+info:
+  title: Museum Visitors
+  description: API to get the museum visitors for a given month
+  version: 1.0.0
+basePath: /api
+schemes:
+  - http
+paths:
+  /visitors:
+    get:
+      summary: Returns the museum visitors for a given month
+      description: It returns the total visitors for all museums, the museum with the lowest and highest number of visitors.
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          required: true
+          name: date
+          type: integer
+          description: The date in milliseconds
+        - in: query
+          required: false
+          name: ignore
+          type: string
+          description: The museum to be ignored in the response
+      responses:
+        400:
+          description: "Date field is required."
+        422:
+          description: "Date is expected to be in milliseconds."
+        500:
+          description: "Exception Occurred!"
+        200:
+          description: "OK"
